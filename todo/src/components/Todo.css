@@ -1,0 +1,121 @@
+.App{
+    width: 800px;
+    height: auto;
+    background-color: rgb(42, 10, 13);
+    margin-left: 400px;
+    margin-top: 150px;
+    border-radius: 20px;
+
+
+}
+
+.App h1{
+    color: white;
+    text-align: center;
+}
+
+.App input {
+
+    width: 450px;
+    padding: 0.8em;
+    margin-left: 72px;
+    margin-top: 20px;
+}
+
+
+.input-wrapper {
+    margin: 3.5rem;
+    color: white;
+  }
+
+  .todos-wrapper {
+    margin-bottom: 2.5rem;
+  }
+
+  .todo {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    border-radius: 18px;
+  }
+
+  input {
+    width: 450px;
+    padding: 0.8em;
+  }
+
+  input:focus {
+    outline: none;
+  }
+
+  button {
+    width: 120px;
+    padding: 0.85em;
+    cursor: pointer;
+    font-weight: 400;
+    letter-spacing: 0.1rem;
+  }
+
+  input,
+  button {
+    font-size: 1em;
+    appearance: none;
+    color: currentcolor;
+    background: transparent;
+    border: 1px solid #828691;
+  }
+
+  .add-button {
+    color: whitesmoke;
+    background-color: black;
+    margin-top: 20px;
+    margin-left: 20px;
+    border-radius: 20px;
+  }
+
+  .delete-button {
+    color: #fe6a6a;
+    border-radius: 20px;
+  }
+
+  ul {
+    padding: 0;
+    list-style: none;
+    margin-bottom: 0px;
+  }
+
+  li {
+    width: 450px;
+    padding: 0.85em;
+    text-align: left;
+    margin-bottom: 0.5rem;
+    background: white;
+    letter-spacing: 0.02rem;
+    transition: all 0.3s ease-out;
+    border-left: 5px solid black;
+    margin-right: 20px;
+    border-radius: 20px;
+  }
+
+
+  .empty {
+    font-size: 20px;
+    font-weight: 400;
+    color: white;
+    letter-spacing: 0.2rem;
+    margin-bottom: 20px;
+  }
+
+
+  .edit-button{
+    color: rgb(0, 120, 0);
+    margin-left: 20px;
+    border-radius: 20px;
+    font-weight:400;
+
+  }
+  .input-todo{
+    border-radius: 20px;
+    background-color: white;
+    color:  rgb(15, 15, 50);
+  }
