@@ -18,14 +18,17 @@
 
     width: 450px;
     padding: 0.8em;
-    margin-left: 72px;
+    margin-left: 150px;
     margin-top: 20px;
+    background-color: white;
+    color:  rgb(42, 10, 13);
 }
 
 
 .input-wrapper {
     margin: 3.5rem;
     color: white;
+    border-radius: 20px;
   }
 
   .todos-wrapper {
@@ -37,6 +40,8 @@
     justify-content: center;
     align-items: flex-start;
     border-radius: 18px;
+    color:  black;
+    margin-right: 20px;
   }
 
   input {
@@ -66,17 +71,26 @@
   }
 
   .add-button {
-    color: whitesmoke;
-    background-color: black;
+    color:white;
+    background-color:  rgb(42, 10, 13);
     margin-top: 20px;
-    margin-left: 20px;
+    margin-left: 320px;
     border-radius: 20px;
   }
+
+
 
   .delete-button {
     color: #fe6a6a;
     border-radius: 20px;
   }
+
+  .save-button {
+    color: green;
+    border-radius: 20px;
+    margin-left: 20px;
+  }
+
 
   ul {
     padding: 0;
@@ -118,4 +132,27 @@
     border-radius: 20px;
     background-color: white;
     color:  rgb(15, 15, 50);
+  }
+
+
+  .save-button1{
+    margin-top: 20px;
+    border-radius: 20px;
+    color: green;
+    background-color: white;
+    font-weight: 300;
+
+  }
+
+  .add-button1{
+    color:white;
+    background-color:  rgb(42, 10, 13);
+    margin-top: 20px;
+    margin-left: 340px;
+    border-radius: 20px;
+
+  }
+
+  .p{
+    font-size: 12;
   }

@@ -3,115 +3,117 @@ import React, { useState } from 'react';
 
 
 
+function App() {
 
-const App = () => {
-    const [todos, setTodos] = useState([]);
-    const [todo, setTodo] = useState("");
+  const [formvis, setVisibilty] = useState(false);
+  const [todo, setTodo] = useState("");
+  const [todos, setTodos] = useState([]);
+  const [todoediting, setTodoEditing] = React.useState(null);
+  const [editingtext, setEditingText] = React.useState("");
 
-    const addTodo = () => {
-      if (todo !== "") {
-        setTodos([...todos, todo]);
-        setTodo("");
+
+
+  //function for adding todo
+  function addTodo(e) {
+    e.preventDefault();
+
+    const description =e.target.Description.value;
+    const duedate =e.target.DueDate.value;
+
+
+    if (todo !== "") {
+      const todoroadd = {
+        id: new Date().getTime(),
+        title: todo,
+        description: description,
+        duedate : duedate
       }
-    };
 
-    const deleteTodo = (text) => {
-      const newTodos = todos.filter((todo) => {
-        return todo !== text;
-      });
-      setTodos(newTodos);
-    };
+      setTodos([...todos].concat(todoroadd))
+      console.log(todos)
+      setTodo("");
 
-    return (
-      <div className="App">
-        <h1>Todo App</h1>
-        <TodoInput todo={todo} setTodo={setTodo} addTodo={addTodo} />
-        <TodoList list={todos} remove={deleteTodo}  />
+    }
+  }
 
-      </div>
-    );
-  };
+  //function for deleting todo
+  function deleteTodo(id) {
+    const updatedtodo = [...todos].filter((todo) => todo.id !== id)
+    setTodos(updatedtodo);
+
+  }
+
+  //function for saving todo
+  function saveEdit(id) {
+    const updatedtodo = [...todos].map((todo) => {
+      if (todo.id === id) {
+        todo.title = editingtext;
+      }
+      return todo;
+    })
+
+    setTodos(updatedtodo);
+    setTodoEditing(null);
+    setEditingText("")
+  }
+
+  //function for visibilty of form
+  function setVisib() {
+    setVisibilty(!formvis)
+  }
 
 
-const TodoInput = ({ title,Details,Due ,setTodo, addTodo }) => {
-    return (
-      <div className="input-wrapper">
-        <input
-          className='input-todo'
-          type="text"
-          name="title"
-          value={title}
-          placeholder="Title"
-          onChange={(e) => {
-            setTodo(e.target.value);
-          }}
-        />
-         <input
-          className='input-todo'
-          type="text"
-          name="Details"
-          value={Details}
-          placeholder="Details"
-          onChange={(e) => {
-            setTodo(e.target.value);
-          }}
-        />
-         <input
-          className='input-todo'
-          type="text"
-          name="due"
-          value={Due}
-          placeholder="Due Date"
-          onChange={(e) => {
-            setTodo(e.target.value);
-          }}
-        />
-        <button className="add-button" onClick={addTodo}>
-          Add
-        </button>
-      </div>
-    );
-  };
+  return (
+    <div className="App">
+      <h1>Todo App</h1>
+      {formvis ?
+
+        <form onSubmit={addTodo}>
+        <input type="text" className='input-wrapper' value={todo} required  placeholder="Title" onChange={(e)=>setTodo(e.target.value)}></input>
+          <input type="text" className='input-wrapper' placeholder="Description"  name = 'Description'></input>
+          <input type="text" className='input-wrapper' placeholder="Due Date" name = 'DueDate' ></input>
+          <button className='add-button' type="submit">Add</button>
+        </form>
+
+        :
+
+        <button onClick={setVisib} className='add-button1'>Add Todos</button>
+      }
 
 
 
+      <ul>
 
-  const TodoList = ({ list, remove,edit }) => {
-    return (
-      <>
-        {list?.length > 0 ? (
-          <ul className="todo-list">
-            {list.map((entry, index) => (
-              <div className="todo">
-                <li key={index}> {entry} </li>
+        {todos.map((todo) =>
 
-                <button
-                  className="delete-button"
-                  onClick={() => {
-                    remove(entry);
-                  }}
-                >
-                  Delete
-                </button>
+        (todoediting === todo.id
 
-                <button
-                  className="edit-button"
-                  onClick={() => {
-                    edit(entry);
-                  }}
-                >
-                  Edit
-                </button>
-              </div>
-            ))}
-          </ul>
-        ) : (
-          <div className="empty">
-            <p>No tasks found</p>
+          ?
+          <div className='todo'>
+            <input type="text" className='input-wrapper' placeholder='Edit Title' value={editingtext} onChange={(e) => setEditingText(e.target.value)}></input>
+            <button className='save-button1' onClick={() => saveEdit(todo.id)}> Save </button>
           </div>
-        )}
-      </>
-    );
-  };
+          :
 
-  export default App;
+          <div className='todo'>
+            <li key={todo.id} > Title : {todo.title} <p>Description: {todo.description}</p>Due Date:  {todo.duedate}<p></p></li>
+
+            <button onClick={() => deleteTodo(todo.id)} className='delete-button'> Delete</button>
+            <button onClick={() => setTodoEditing(todo.id)} className='edit-button'> Edit</button>
+
+          </div>
+
+        )
+        )
+
+        }
+
+      </ul>
+
+    </div>
+  );
+};
+
+
+
+export default App;
